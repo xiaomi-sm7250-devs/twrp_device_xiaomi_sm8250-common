@@ -1,12 +1,12 @@
 # Inherit from common AOSP config
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
+# Default device path for common folder
 LOCAL_PATH := device/asus/sm8250-common
 
 # define hardware platform
 PRODUCT_PLATFORM := kona
 
-#TEST
 # A/B support
 AB_OTA_UPDATER := true
 
