@@ -23,8 +23,8 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
-# Common path for ASUS sm8250 device trees
-COMMON_PATH := device/asus/sm8250-common
+# Common path for sm8250 device trees
+COMMON_PATH := device/$(PRODUCT_BRAND)/sm8250-common
 
 # Architecture
 TARGET_ARCH := arm64
@@ -94,7 +94,7 @@ TARGET_USES_HARDWARE_QCOM_BOOTCTRL := true
 QCOM_BOARD_PLATFORMS += $(TARGET_BOARD_PLATFORM)
 
 # Partition Info
-BOARD_FLASH_BLOCK_SIZE := 262144
+BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_USES_PRODUCTIMAGE := true
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
