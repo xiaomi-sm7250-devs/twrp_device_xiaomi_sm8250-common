@@ -2,7 +2,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
 # Default device path for common folder
-LOCAL_PATH := device/asus/sm8250-common
+COMMON_PATH := device/$(BOARD_VENDOR)/$(COMMON_SOC)-common
 
 # define hardware platform
 PRODUCT_PLATFORM := kona
@@ -47,10 +47,6 @@ PRODUCT_PACKAGES += \
     bootctrl.$(PRODUCT_PLATFORM) \
     bootctrl.$(PRODUCT_PLATFORM).recovery \
 
-# Apex libraries
-PRODUCT_HOST_PACKAGES += \
-    libandroidicu
-
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
@@ -66,12 +62,8 @@ PRODUCT_PACKAGES_ENG += \
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
-
-# tzdata
-PRODUCT_PACKAGES_ENG += \
-    tzdata_twrp
+    $(COMMON_PATH)
 
 # ASUS otacert
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(LOCAL_PATH)/security/asus
+    $(COMMON_PATH)/security/asus

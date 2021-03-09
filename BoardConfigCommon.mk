@@ -23,8 +23,8 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
-# Common path for sm8250 device trees
-COMMON_PATH := device/$(PRODUCT_BRAND)/sm8250-common
+# Common path for SOC device trees
+COMMON_PATH := device/$(PRODUCT_BRAND)/$(COMMON_SOC)-common
 
 # Architecture
 TARGET_ARCH := arm64
