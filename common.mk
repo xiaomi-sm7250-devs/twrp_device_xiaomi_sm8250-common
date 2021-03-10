@@ -4,9 +4,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 # Default device path for common folder
 COMMON_PATH := device/$(BOARD_VENDOR)/$(COMMON_SOC)-common
 
-# define hardware platform
-PRODUCT_PLATFORM := kona
-
 # A/B support
 AB_OTA_UPDATER := true
 
@@ -68,6 +65,6 @@ PRODUCT_PACKAGES_ENG += \
 PRODUCT_SOONG_NAMESPACES += \
     $(COMMON_PATH)
 
-# ASUS otacert
+# OEM otacert
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(COMMON_PATH)/security/asus
+    $(COMMON_PATH)/security/$(BOARD_VENDOR)
