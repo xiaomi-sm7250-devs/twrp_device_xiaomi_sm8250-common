@@ -37,6 +37,7 @@
 #<src>                                                 <mnt_point>            <type>  <mnt_flags and options>                                                                       <fs_mgr_flags>
 # Logical partitions
 system                                                  /system                ext4    ro,barrier=1,discard                                                                          wait,slotselect
+system_ext                                              /system_ext            ext4    ro,barrier=1,discard                                                                          wait,slotselect
 product                                                 /product               ext4    ro,barrier=1,discard                                                                          wait,slotselect
 vendor                                                  /vendor                ext4    ro,barrier=1,discard                                                                          wait,slotselect
 odm                                                     /odm                   ext4    ro,barrier=1,discard                                                                          wait,slotselect
