@@ -42,9 +42,11 @@ on fs
     chown root system /dev/fscklogs/log
     chmod 0770 /dev/fscklogs/log
 
-    # Load Tuxera exFAT & NTFS modules
-    insmod /vendor/lib/modules/texfat.ko
-    insmod /vendor/lib/modules/tntfs.ko
+on boot
+    start health-hal-2-1
+
+on post-fs
+    start boot-hal-1-0
 
 on property:ro.product.device=*
     start device_check
