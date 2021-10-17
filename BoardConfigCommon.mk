@@ -76,7 +76,6 @@ BOARD_DTB_OFFSET           := 0x01f00000
 TARGET_KERNEL_ARCH := $(TARGET_ARCH)
 TARGET_NO_KERNEL := false
 BOARD_INCLUDE_RECOVERY_DTBO := true
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
@@ -112,6 +111,7 @@ BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 6441926656
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     system \
+    system_ext \
     vendor \
     product \
     odm
@@ -120,6 +120,7 @@ BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := \
 TARGET_RECOVERY_WIPE := $(COMMON_PATH)/recovery.wipe
 
 # Workaround for error copying vendor files to recovery ramdisk
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_VENDOR := vendor
@@ -133,10 +134,9 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     android.hidl.base@1.0 \
     ashmemd \
     ashmemd_aidl_interface-cpp \
+    libandroidicu \
     libashmemd_client \
     libcap \
-    libicui18n \
-    libicuuc \
     libion \
     libpcrecpp \
     libxml2
@@ -155,12 +155,13 @@ BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
 # Encryption
 BOARD_USES_METADATA_PARTITION := true
 BOARD_USES_QCOM_FBE_DECRYPTION := true
-PLATFORM_VERSION := 20.1.0
+PLATFORM_VERSION := 80
 PLATFORM_SECURITY_PATCH := 2099-12-31
-VENDOR_SECURITY_PATCH := 2099-12-31
+PRODUCT_ENFORCE_VINTF_MANIFEST := true
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # Extras
-TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
+TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 
 # TWRP specific build flags
 TARGET_RECOVERY_QCOM_RTC_FIX := true
@@ -170,7 +171,6 @@ TW_THEME := portrait_hdpi
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
 TW_DEFAULT_BRIGHTNESS := 420
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_EXCLUDE_TWRPAPP := true
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_CRYPTO := true
@@ -179,26 +179,26 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_NO_EXFAT_FUSE := true
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.product;ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
-TW_RECOVERY_ADDITIONAL_RELINK_BINARY_FILES += \
+RECOVERY_BINARY_SOURCE_FILES += \
     $(TARGET_OUT_EXECUTABLES)/ashmemd
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libcap.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libicui18n.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libicuuc.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpcrecpp.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so
+TW_LOAD_VENDOR_MODULES := "texfat.ko tntfs.ko"
 
 # TWRP Debug Flags
 #TWRP_EVENT_LOGGING := true
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_RECOVERY_DEVICE_MODULES += debuggerd
-TW_RECOVERY_ADDITIONAL_RELINK_FILES += $(TARGET_OUT_EXECUTABLES)/debuggerd
-#TARGET_RECOVERY_DEVICE_MODULES += strace
-#TW_RECOVERY_ADDITIONAL_RELINK_FILES += $(TARGET_OUT_OPTIONAL_EXECUTABLES)/strace
+RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/debuggerd
+TARGET_RECOVERY_DEVICE_MODULES += strace
+RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/strace
 #TARGET_RECOVERY_DEVICE_MODULES += twrpdec
 #TW_RECOVERY_ADDITIONAL_RELINK_FILES += $(TARGET_RECOVERY_ROOT_OUT)/sbin/twrpdec
+
