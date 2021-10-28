@@ -62,7 +62,7 @@ PRODUCT_PACKAGES += \
     fastbootd
 
 # qcom decryption
-PRODUCT_PACKAGES_ENG += \
+PRODUCT_PACKAGES += \
     qcom_decrypt \
     qcom_decrypt_fbe
 
