@@ -23,8 +23,6 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
-# Common path for SOC device trees
-COMMON_PATH := device/$(PRODUCT_BRAND)/$(COMMON_SOC)-common
 
 # Architecture
 TARGET_ARCH := arm64
@@ -161,6 +159,7 @@ PRODUCT_ENFORCE_VINTF_MANIFEST := true
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # Extras
+BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 
 # TWRP specific build flags
@@ -190,6 +189,8 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpcrecpp.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so
 TW_LOAD_VENDOR_MODULES := "texfat.ko tntfs.ko"
+USE_RECOVERY_INSTALLER := true
+RECOVERY_INSTALLER_PATH := bootable/recovery/installer
 
 # TWRP Debug Flags
 #TWRP_EVENT_LOGGING := true
