@@ -189,8 +189,10 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpcrecpp.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so
 TW_LOAD_VENDOR_MODULES := "texfat.ko tntfs.ko"
-USE_RECOVERY_INSTALLER := true
-RECOVERY_INSTALLER_PATH := bootable/recovery/installer
+ifneq ($(wildcard bootable/recovery/installer/.),)
+    USE_RECOVERY_INSTALLER := true
+    RECOVERY_INSTALLER_PATH := bootable/recovery/installer
+endif
 
 # TWRP Debug Flags
 #TWRP_EVENT_LOGGING := true
@@ -202,4 +204,16 @@ TARGET_RECOVERY_DEVICE_MODULES += strace
 RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/strace
 #TARGET_RECOVERY_DEVICE_MODULES += twrpdec
 #TW_RECOVERY_ADDITIONAL_RELINK_FILES += $(TARGET_RECOVERY_ROOT_OUT)/sbin/twrpdec
+
+ifneq ($(wildcard device/common/version-info/.),)
+    # Custom TWRP Versioning
+    CUSTOM_TWRP_DEVICE_VERSION := 1
+    CUSTOM_TWRP_VERSION_PREFIX := CPTB
+
+    include device/common/version-info/custom_twrp_version.mk
+
+    ifeq ($(CUSTOM_TWRP_VERSION),)
+        CUSTOM_TWRP_VERSION := $(shell date -u +%Y%m%d)-01
+    endif
+endif
 
