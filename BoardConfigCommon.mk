@@ -213,7 +213,7 @@ ifneq ($(wildcard device/common/version-info/.),)
     include device/common/version-info/custom_twrp_version.mk
 
     ifeq ($(CUSTOM_TWRP_VERSION),)
-        CUSTOM_TWRP_VERSION := $(shell date -u +%Y%m%d)-01
+        CUSTOM_TWRP_VERSION := $(shell date +%Y%m%d)-01
     endif
 endif
 
