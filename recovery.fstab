@@ -36,15 +36,15 @@
 
 #<src>                                                 <mnt_point>            <type>  <mnt_flags and options>                                                                       <fs_mgr_flags>
 # Logical partitions
-system                                                  /system                ext4    ro,barrier=1,discard                                                                          wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
-product                                                 /product               ext4    ro,barrier=1,discard                                                                          wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
-vendor                                                  /vendor                ext4    ro,barrier=1,discard                                                                          wait,slotselect,avb,logical,first_stage_mount
-odm                                                     /odm                   ext4    ro,barrier=1,discard                                                                          wait,slotselect,avb,logical,first_stage_mount
-system_ext                                              /system_ext            ext4    ro,barrier=1,discard                                                                          wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,display=System_EXT
+system                                                  /system                ext4    ro,barrier=1,discard                                                                          wait,slotselect,logical
+product                                                 /product               ext4    ro,barrier=1,discard                                                                          wait,slotselect,logical
+vendor                                                  /vendor                ext4    ro,barrier=1,discard                                                                          wait,slotselect,logical
+odm                                                     /odm                   ext4    ro,barrier=1,discard                                                                          wait,slotselect,logical
+system_ext                                              /system_ext            ext4    ro,barrier=1,discard                                                                          wait,slotselect,logical,display=System_EXT
 
 # Userdata/Metadata partitions
-/dev/block/by-name/metadata                             /metadata              ext4    noatime,nosuid,nodev,discard                                                                  wait,check,formattable,wrappedkey,first_stage_mount,display=Metadata
-/dev/block/bootdevice/by-name/userdata                  /data                  f2fs    noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier,inlinecrypt  latemount,wait,check,formattable,fileencryption=ice,wrappedkey,keydirectory=/metadata/vold/metadata_encryption,quota,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,checkpoint=fs
+/dev/block/by-name/metadata                             /metadata              ext4    noatime,nosuid,nodev,discard                                                                  wait,check,formattable,wrappedkey,display=Metadata
+/dev/block/bootdevice/by-name/userdata                  /data                  f2fs    noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier,inlinecrypt  wait,check,formattable,fileencryption=ice:aes-256-cts,wrappedkey,keydirectory=/metadata/vold/metadata_encryption,quota
 
 # Need to have this entry in here even though the mount point itself is no longer needed.
 # The update_engine code looks for this entry in order to determine the boot device address
