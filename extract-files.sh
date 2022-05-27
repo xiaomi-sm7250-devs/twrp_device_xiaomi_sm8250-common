@@ -54,20 +54,21 @@ if [ -z "${SRC}" ]; then
 fi
 
 function blob_fixup() {
-    return
     case "${1}" in
-        vendor/lib/libsample1.so)
-            sed -i 's|/data/misc/sample1|/data/misc/sample2|g' "${2}"
+        system/bin/init.qti.chg_policy.sh)
+            sed -i '/PATH=/d' "${2}"
             ;;
-        vendor/lib64/libsample2.so)
-            "${PATCHELF}" --remove-needed "libsample3.so" "${2}"
-            "${PATCHELF}" --add-needed "libsample4.so" "${2}"
+        vendor/etc/init/vendor.qti.hardware.charger_monitor@1.0-service.rc \
+        | vendor/etc/init/vendor.qti.hardware.vibrator.service.xiaomi_kona.rc)
+            sed -i '/class /d' "${2}"
+            sed -i 's|/vendor/bin/hw|/system/bin|g' "${2}"
+            sed -i 's|/vendor/bin|/system/bin|g' "${2}"
             ;;
-        vendor/lib/libsample5.so)
-            "${PATCHELF}" --replace-needed "libsample6.so" "libsample7.so" "${2}"
-            ;;
-        vendor/lib/libsample7.so)
-            "${PATCHELF}" --set-soname "libsample7.so" "${2}"
+        vendor/etc/init/init.batterysecret.rc)
+            sed -i '/class /d' "${2}"
+            sed -i 's|/vendor/bin|/system/bin|g' "${2}"
+            sed -i 's|u:r:batterysecret:s0|u:r:recovery:s0|g' "${2}"
+            sed -i 's|property:sys.boot_completed=1|boot|g' "${2}"
             ;;
     esac
 }
