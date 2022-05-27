@@ -59,6 +59,9 @@ fstab="/etc/twrp.flags"
 log_print 2 "Running $SCRIPTNAME script for TWRP..."
 log_print 2 "ro.product.device=$device"
 
+# TODO: Adapt for xiaomi sm8250
+exit 0
+
 if [ "$device" = "I002D" ]; then
 	log_print 2 "ZenFone 7/7 Pro detected. Removing ASUS Firmware support from twrp.flags..."
 	remove_line $fstab "/asusfw"

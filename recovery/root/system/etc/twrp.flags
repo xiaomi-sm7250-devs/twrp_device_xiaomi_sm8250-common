@@ -28,20 +28,7 @@
 /efs1			emmc	/dev/block/bootdevice/by-name/mdm1m9kefs1							flags=backup=1;display="EFS"
 /efs2			emmc	/dev/block/bootdevice/by-name/mdm1m9kefs2							flags=backup=1;subpartitionof=/efs1
 /efs3			emmc	/dev/block/bootdevice/by-name/mdm1m9kefs3							flags=backup=1;subpartitionof=/efs1
-/efs3_CA		emmc	/dev/block/bootdevice/by-name/mdm1m9kefs3_CA						flags=backup=1;subpartitionof=/efs1
 /efsc			emmc	/dev/block/bootdevice/by-name/mdm1m9kefsc							flags=backup=1;subpartitionof=/efs1
-
-# ASUS-Specific partitions
-/asusfw			ext4	/dev/block/bootdevice/by-name/asusfw								flags=slotselect;display="ASUS-specific Firmware";backup=1;fsflags="ro,nosuid,noatime,nodev,barrier=1,noauto_da_alloc"
-
-# System Configuration & ASUS keys
-/sysconf		emmc	/dev/block/bootdevice/by-name/sysconf								flags=backup=1;display="System Configuration Keys"
-/asuskey		emmc	/dev/block/bootdevice/by-name/asuskey								flags=backup=1;subpartitionof=/sysconf
-/asuskey2		emmc	/dev/block/bootdevice/by-name/asuskey2								flags=backup=1;subpartitionof=/sysconf
-/asuskey3		emmc	/dev/block/bootdevice/by-name/asuskey3								flags=backup=1;subpartitionof=/sysconf
-/asuskey4		emmc	/dev/block/bootdevice/by-name/asuskey4								flags=backup=1;subpartitionof=/sysconf
-/asuskey5		emmc	/dev/block/bootdevice/by-name/asuskey5								flags=backup=1;subpartitionof=/sysconf
-/asuskey6		emmc	/dev/block/bootdevice/by-name/asuskey6								flags=backup=1;subpartitionof=/sysconf
 
 # Removable storage
 /external_sd	vfat	/dev/block/mmcblk0p1												flags=fsflags="nosuid,nodev,utf8";display="Micro SD Card";storage;wipeingui;removable

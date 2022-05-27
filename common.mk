@@ -66,11 +66,8 @@ PRODUCT_SOONG_NAMESPACES += \
     $(COMMON_PATH)
 
 # OEM otacerts
-PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(COMMON_PATH)/security/$(BOARD_VENDOR)1 \
-    $(COMMON_PATH)/security/$(BOARD_VENDOR)2 \
-    $(COMMON_PATH)/security/$(BOARD_VENDOR)3 \
-    $(COMMON_PATH)/security/$(BOARD_VENDOR)4
+#PRODUCT_EXTRA_RECOVERY_KEYS += \
+## Reserved
 
 # Apex libraries
 ifneq (1,$(filter 1,$(shell echo "$$(( $(PLATFORM_SDK_VERSION) >= 31 ))" )))

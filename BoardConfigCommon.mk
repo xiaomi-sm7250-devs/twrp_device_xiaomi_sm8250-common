@@ -180,7 +180,6 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so
-TW_LOAD_VENDOR_MODULES := "texfat.ko tntfs.ko"
 TW_USE_FSCRYPT_POLICY := 1
 
 # TWRP Debug Flags
@@ -203,7 +202,7 @@ endif
 
 # Custom TWRP Versioning
 ifneq ($(wildcard device/common/version-info/.),)
-    CUSTOM_TWRP_VERSION_PREFIX := CPTB
+#    CUSTOM_TWRP_VERSION_PREFIX := CPTB
 
     include device/common/version-info/custom_twrp_version.mk
 
