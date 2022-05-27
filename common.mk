@@ -92,3 +92,6 @@ ifneq ($(wildcard vendor/xiaomi/sm8250-common/proprietary/),)
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,vendor/xiaomi/sm8250-common/proprietary/,$(TARGET_COPY_OUT_RECOVERY)/root/)
 endif
+
+# Extras
+$(call inherit-product-if-exists, vendor/extras/product.mk)
