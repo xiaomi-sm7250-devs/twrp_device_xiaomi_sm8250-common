@@ -11,6 +11,8 @@
 /exaid			emmc	/dev/block/bootdevice/by-name/exaid								flags=display="Exaid";backup=1;flashimg=1
 /boot			emmc	/dev/block/bootdevice/by-name/boot									flags=slotselect
 /logo			emmc	/dev/block/bootdevice/by-name/logo								flags=display="Logo";backup=1;flashimg=1
+/cust			auto	/dev/block/bootdevice/by-name/cust								flags=display="Cust";wipeingui
+/cust_image		emmc	/dev/block/bootdevice/by-name/cust								flags=display="Cust";backup=1;flashimg=1
 
 # AVB partitions
 /dtbo			emmc	/dev/block/bootdevice/by-name/dtbo									flags=slotselect;display="DTBO";backup=1;flashimg=1
