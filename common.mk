@@ -7,18 +7,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # A/B support
 ifeq ($(TARGET_IS_VAB),true)
-AB_OTA_UPDATER := true
-
-# A/B updater updatable partitions list. Keep in sync with the partition list
-# with "_a" and "_b" variants in the device. Note that the vendor can add more
-# more partitions to this list for the bootloader and radio.
-AB_OTA_PARTITIONS += \
-    boot \
-    system \
-    vendor \
-    vbmeta \
-    dtbo
-
 PRODUCT_PACKAGES += \
     otapreopt_script \
     update_engine \
@@ -35,7 +23,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # needed since our qti_dynamic_partitions does not include
 # vendor and odm and we also dont want to AB update them
 TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
-
 endif # TARGET_IS_VAB
 
 # API
