@@ -6,6 +6,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # A/B support
+ifeq ($(TARGET_IS_VAB),true)
 AB_OTA_UPDATER := true
 
 # A/B updater updatable partitions list. Keep in sync with the partition list
@@ -30,15 +31,18 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-# API
-PRODUCT_SHIPPING_API_LEVEL := 29
-
 # tell update_engine to not change dynamic partition table during updates
 # needed since our qti_dynamic_partitions does not include
 # vendor and odm and we also dont want to AB update them
 TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
 
+endif # TARGET_IS_VAB
+
+# API
+PRODUCT_SHIPPING_API_LEVEL := 29
+
 # Boot control HAL
+ifeq ($(TARGET_IS_VAB),true)
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.0-service \
@@ -47,6 +51,7 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl.recovery \
     bootctrl.$(PRODUCT_PLATFORM) \
     bootctrl.$(PRODUCT_PLATFORM).recovery \
+endif # TARGET_IS_VAB
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true

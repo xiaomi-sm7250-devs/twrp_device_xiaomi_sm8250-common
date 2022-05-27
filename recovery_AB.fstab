@@ -36,11 +36,11 @@
 
 #<src>                                                 <mnt_point>            <type>  <mnt_flags and options>                                                                       <fs_mgr_flags>
 # Logical partitions
-system                                                  /system                ext4    ro,barrier=1,discard                                                                          wait,logical
-product                                                 /product               ext4    ro,barrier=1,discard                                                                          wait,logical
-vendor                                                  /vendor                ext4    ro,barrier=1,discard                                                                          wait,logical
-odm                                                     /odm                   ext4    ro,barrier=1,discard                                                                          wait,logical
-system_ext                                              /system_ext            ext4    ro,barrier=1,discard                                                                          wait,logical
+system                                                  /system                ext4    ro,barrier=1,discard                                                                          wait,slotselect,logical
+product                                                 /product               ext4    ro,barrier=1,discard                                                                          wait,slotselect,logical
+vendor                                                  /vendor                ext4    ro,barrier=1,discard                                                                          wait,slotselect,logical
+odm                                                     /odm                   ext4    ro,barrier=1,discard                                                                          wait,slotselect,logical
+system_ext                                              /system_ext            ext4    ro,barrier=1,discard                                                                          wait,slotselect,logical
 
 # Userdata/Metadata partitions
 /dev/block/by-name/metadata                             /metadata              ext4    noatime,nosuid,nodev,discard                                                                  wait,check,formattable,wrappedkey
