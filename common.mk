@@ -50,7 +50,7 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl-wrapper \
     android.hardware.boot@1.0-impl.recovery \
     bootctrl.$(PRODUCT_PLATFORM) \
-    bootctrl.$(PRODUCT_PLATFORM).recovery \
+    bootctrl.$(PRODUCT_PLATFORM).recovery
 endif # TARGET_IS_VAB
 
 # Dynamic partitions
