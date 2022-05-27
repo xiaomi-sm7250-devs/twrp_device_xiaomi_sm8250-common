@@ -3,12 +3,10 @@
 # Charger (HVDCP)
 vendor/bin/hvdcp_opti:system/bin/hvdcp_opti
 vendor/bin/init.qti.chg_policy.sh:system/bin/init.qti.chg_policy.sh
-vendor/etc/init/vendor.qti.hardware.charger_monitor@1.0-service.rc
 vendor/etc/charger_fstab.qti
 
 # Charger (Mi Turbo Charge)
 vendor/bin/batterysecret:system/bin/batterysecret
-vendor/etc/init/init.batterysecret.rc
 
 # Gatekeeper
 vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti:system/bin/android.hardware.gatekeeper@1.0-service-qti
@@ -47,7 +45,6 @@ vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 
 # Vibrator
 vendor/bin/hw/vendor.qti.hardware.vibrator.service.xiaomi_kona:system/bin/vendor.qti.hardware.vibrator.service.xiaomi_kona
-vendor/etc/init/vendor.qti.hardware.vibrator.service.xiaomi_kona.rc
 vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xiaomi_kona.xml
 vendor/lib64/libqtivibratoreffect.so
 vendor/lib64/vendor.qti.hardware.vibrator.impl.xiaomi_kona.so
