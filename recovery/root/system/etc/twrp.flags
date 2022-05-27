@@ -31,5 +31,4 @@
 /efsc			emmc	/dev/block/bootdevice/by-name/mdm1m9kefsc							flags=backup=1;subpartitionof=/efs1
 
 # Removable storage
-/external_sd	vfat	/dev/block/mmcblk0p1												flags=fsflags="nosuid,nodev,utf8";display="Micro SD Card";storage;wipeingui;removable
 /usbstorage		vfat	/dev/block/sdh1									/dev/block/sdh		flags=fsflags=utf8;display="USB Storage";storage;wipeingui;removable
