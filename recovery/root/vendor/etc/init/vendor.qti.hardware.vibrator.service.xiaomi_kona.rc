@@ -1,3 +1,4 @@
 service vendor.qti.vibrator.xiaomi_kona /system/bin/vendor.qti.hardware.vibrator.service.xiaomi_kona
     user system
     group system input
+    seclabel u:r:recovery:s0
