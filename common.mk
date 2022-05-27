@@ -66,6 +66,13 @@ PRODUCT_PACKAGES += \
     qcom_decrypt \
     qcom_decrypt_fbe
 
+# Recovery
+ifeq ($(TARGET_IS_VAB),true)
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab/twrp_AB.flags:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/twrp.flags
+else
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab/twrp.flags:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/twrp.flags
+endif
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(COMMON_PATH)
