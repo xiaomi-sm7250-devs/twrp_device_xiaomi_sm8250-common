@@ -56,6 +56,7 @@ fi
 function blob_fixup() {
     case "${1}" in
         system/bin/init.qti.chg_policy.sh)
+            sed -i 's|/vendor/bin/sh|/sbin/sh|g' "${2}"
             sed -i '/PATH=/d' "${2}"
             ;;
         vendor/etc/init/vendor.qti.hardware.charger_monitor@1.0-service.rc \
