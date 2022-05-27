@@ -131,6 +131,9 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libxml2 \
     vendor.display.config@1.0 \
     vendor.display.config@2.0
+ifneq (1,$(filter 1,$(shell echo "$$(( $(PLATFORM_SDK_VERSION) >= 31 ))" )))
+TARGET_RECOVERY_DEVICE_MODULES += libandroidicu
+endif
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/recovery.fstab
 
 # Use mke2fs to create ext4 images

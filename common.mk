@@ -72,3 +72,8 @@ PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(COMMON_PATH)/security/$(BOARD_VENDOR)3 \
     $(COMMON_PATH)/security/$(BOARD_VENDOR)4
 
+# Apex libraries
+ifneq (1,$(filter 1,$(shell echo "$$(( $(PLATFORM_SDK_VERSION) >= 31 ))" )))
+PRODUCT_COPY_FILES += \
+    $(OUT_DIR)/target/product/$(PRODUCT_RELEASE_NAME)/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so
+endif
