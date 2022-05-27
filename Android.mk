@@ -25,7 +25,10 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),$(filter $(TARGET_DEVICE),umi mikona_a))
+MILITO_DEVICES := monet vangogh
+MIKONA_DEVICES := mikona_a umi
+
+ifeq ($(TARGET_DEVICE),$(filter $(TARGET_DEVICE),$(MILITO_DEVICES) $(MIKONA_DEVICES)))
     subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
     $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
 endif
