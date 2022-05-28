@@ -258,3 +258,5 @@ endif
 #
 # end local build flags
 #
+
+include $(COMMON_PATH)/BoardConfigSHRP.mk
