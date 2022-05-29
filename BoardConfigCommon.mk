@@ -65,11 +65,6 @@ TARGET_BOOTLOADER_BOARD_NAME := $(PRODUCT_PLATFORM)
 TARGET_NO_BOOTLOADER := true
 TARGET_USES_UEFI := true
 
-ifeq ($(TARGET_IS_VAB),true)
-BOARD_USES_RECOVERY_AS_BOOT := true
-TARGET_NO_RECOVERY := true
-endif
-
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
