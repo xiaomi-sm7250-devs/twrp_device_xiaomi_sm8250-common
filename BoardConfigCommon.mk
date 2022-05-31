@@ -161,6 +161,9 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libxml2 \
     vendor.display.config@1.0 \
     vendor.display.config@2.0
+ifneq (1,$(filter 1,$(shell echo "$$(( $(PLATFORM_SDK_VERSION) >= 31 ))" )))
+TARGET_RECOVERY_DEVICE_MODULES += libandroidicu
+endif
 ifeq ($(TARGET_IS_VAB),true)
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/fstab/recovery_AB.fstab
 else
