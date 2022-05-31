@@ -64,6 +64,17 @@ endif
 PRODUCT_SOONG_NAMESPACES += \
     $(COMMON_PATH)
 
+# Vibrator
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.vibrator.service.xiaomi_kona
+
+PRODUCT_COPY_FILES += \
+    $(OUT_DIR)/target/product/$(PRODUCT_RELEASE_NAME)/vendor/bin/hw/vendor.qti.hardware.vibrator.service.xiaomi_kona:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/vendor.qti.hardware.vibrator.service.xiaomi_kona \
+    $(OUT_DIR)/target/product/$(PRODUCT_RELEASE_NAME)/vendor/etc/init/vendor.qti.hardware.vibrator.service.xiaomi_kona.rc:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/init/vendor.qti.hardware.vibrator.service.xiaomi_kona.rc \
+    $(OUT_DIR)/target/product/$(PRODUCT_RELEASE_NAME)/vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xiaomi_kona.xml:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xiaomi_kona.xml \
+    $(OUT_DIR)/target/product/$(PRODUCT_RELEASE_NAME)/vendor/lib64/libqtivibratoreffect.so:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib64/libqtivibratoreffect.so \
+    $(OUT_DIR)/target/product/$(PRODUCT_RELEASE_NAME)/vendor/lib64/vendor.qti.hardware.vibrator.impl.xiaomi_kona.so:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib64/vendor.qti.hardware.vibrator.impl.xiaomi_kona.so
+
 # OEM otacerts
 #PRODUCT_EXTRA_RECOVERY_KEYS += \
 ## Reserved
