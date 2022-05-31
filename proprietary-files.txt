@@ -42,10 +42,3 @@ vendor/lib64/libtime_genoff.so
 vendor/lib64/vendor.display.config@1.0.so
 vendor/lib64/vendor.display.config@2.0.so
 vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
-
-# Vibrator
-system/lib64/android.hardware.vibrator-V1-ndk_platform.so
-vendor/bin/hw/vendor.qti.hardware.vibrator.service.xiaomi_kona:system/bin/vendor.qti.hardware.vibrator.service.xiaomi_kona
-vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xiaomi_kona.xml
-vendor/lib64/libqtivibratoreffect.so
-vendor/lib64/vendor.qti.hardware.vibrator.impl.xiaomi_kona.so
