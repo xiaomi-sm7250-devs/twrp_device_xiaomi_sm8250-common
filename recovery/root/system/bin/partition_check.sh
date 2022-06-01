@@ -40,10 +40,10 @@ log_print()
 
 # remove_line <file> <line match string>
 remove_line() {
-  if grep -q "$2" $1; then
+  until ! grep -q "$2" $1; do
     local line=$(grep -n "$2" $1 | head -n1 | cut -d: -f1);
     sed -i "${line}d" $1;
-  fi;
+  done;
 }
 
 finish()
@@ -53,24 +53,14 @@ finish()
 }
 
 # Variables
-device=$(getprop ro.product.device)
-fstab="/etc/twrp.flags"
+fstab="/system/etc/twrp.flags"
 
 log_print 2 "Running $SCRIPTNAME script for TWRP..."
-log_print 2 "ro.product.device=$device"
 
-# TODO: Adapt for xiaomi sm8250
-exit 0
-
-if [ "$device" = "I002D" ]; then
-	log_print 2 "ZenFone 7/7 Pro detected. Removing ASUS Firmware support from twrp.flags..."
-	remove_line $fstab "/asusfw"
-	finish
-elif [ "$device" = "I003D" ]; then
-	log_print 2 "ROG Phone 3 detected. Removing SD Card support from twrp.flags..."
-	remove_line $fstab "/external_sd"
-	finish
-else
-	log_print 0 "Unknown Device. Exiting script."
-	exit 1
-fi
+for p in exaid logo cust recovery ; do
+	local PART_PATH="/dev/block/bootdevice/by-name/${p}"
+	if [ ! -e "$PART_PATH" ] && [ ! -e "${PART_PATH}_a" ]; then
+		log_print 1 "Removing non-existent partition from fstab: $PART_PATH"
+		remove_line $fstab "$PART_PATH"
+	fi
+done
