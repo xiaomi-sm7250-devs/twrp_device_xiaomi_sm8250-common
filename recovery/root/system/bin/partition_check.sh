@@ -57,7 +57,7 @@ fstab="/system/etc/twrp.flags"
 
 log_print 2 "Running $SCRIPTNAME script for TWRP..."
 
-for p in exaid logo cust recovery ; do
+for p in exaid logo cust recovery splash ; do
 	local PART_PATH="/dev/block/bootdevice/by-name/${p}"
 	if [ ! -e "$PART_PATH" ] && [ ! -e "${PART_PATH}_a" ]; then
 		log_print 1 "Removing non-existent partition from fstab: $PART_PATH"
