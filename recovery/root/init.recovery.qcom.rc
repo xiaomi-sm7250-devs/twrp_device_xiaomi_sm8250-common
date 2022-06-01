@@ -40,3 +40,13 @@ on boot
 
 on post-fs
     start boot-hal-1-0
+
+on property:ro.product.device=*
+    start device_check
+
+service device_check /system/bin/device_check.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
