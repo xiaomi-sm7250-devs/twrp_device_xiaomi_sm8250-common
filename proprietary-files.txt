@@ -1,4 +1,4 @@
-# Unpinned blobs from lineage-18.1-20220507-nightly-alioth-signed.zip
+# Unpinned blobs from Redmi/apollo_global/apollo:12/RKQ1.211001.001/V13.0.3.0.SJDMIXM:user/release-keys
 
 # Charger (HVDCP)
 vendor/bin/hvdcp_opti:system/bin/hvdcp_opti
